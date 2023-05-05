@@ -2,11 +2,16 @@
 
 const URL = 'https://api.thecatapi.com/v1/images/search';
 
-fetch(URL)
-  .then( res => {
-    return res.json()
-  })
-  .then(data => {
-    const img = document.querySelector('img');
-    img.src = data[0].url;
-  })
+const getRandomCat = async function () {
+     let result = await fetch(URL);
+     console.debug(result)
+     let data = await result.json();
+     const img = document.querySelector('img');
+     img.src = data[0].url;
+} 
+
+getRandomCat();
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', getRandomCat);
